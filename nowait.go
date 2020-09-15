@@ -3,7 +3,7 @@ package nowait
 import "sync"
 
 type NowaitGroup struct {
-	*sync.WaitGroup
+	wg *sync.WaitGroup
 }
 
 func NewNowaitGroup() *NowaitGroup {
@@ -11,16 +11,16 @@ func NewNowaitGroup() *NowaitGroup {
 }
 
 func (no *NowaitGroup) Add(delta int) {
-	no.Add(delta)
+	no.wg.Add(delta)
 }
 
 func (no *NowaitGroup) Done() {
-	no.Done()
+	no.wg.Done()
 }
 
 func (no *NowaitGroup) Wait() {
 	// do wait only in tests
 	if runInTest() {
-		no.Wait()
+		no.wg.Wait()
 	}
 }

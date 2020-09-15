@@ -1,6 +1,8 @@
 package nowait
 
-import "flag"
+import (
+	"flag"
+)
 
 const (
 	defaultTestFlag = "test.v"
